@@ -1,0 +1,21 @@
+{
+  "name": "js",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build --emptyOutDir",
+    "build:watch": "vite build --watch --emptyOutDir",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.2.31",
+    "vue-i18n": "^9.1.9",
+    "vue-router": "^4.0.12"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.10.2",
+    "sass": "^1.49.9",
+    "vite": "^2.8.6",
+    "vite-plugin-html": "^3.2.0"
+  }
+}

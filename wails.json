@@ -1,0 +1,32 @@
+{
+  "name": "Walios",
+  "assetdir": "frontend/dist",
+  "frontend:build": "npm run build -w js",
+  "frontend:install": "npm install",
+  "frontend:dev": "",
+  "frontend:dev:watcher": "npm run build:watch -w js",
+  "wailsjsdir": "./frontend",
+  "version": "2",
+  "Path": "",
+  "BuildDir": "",
+  "outputfilename": "Walios",
+  "OutputType": "",
+  "Platform": "",
+  "runNonNativeBuildHooks": false,
+  "postBuildHooks": null,
+  "Author": {
+    "name": "UncleDeron",
+    "email": "unclederon@chderon.cf"
+  },
+  "Info": {
+    "companyName": "walios",
+    "productName": "Walios",
+    "productVersion": "0.0.1",
+    "copyright": "Copyright.........",
+    "comments": "Built using Wails (https://wails.app)"
+  },
+  "debounceMS": 1500,
+  "devserverurl": "http://localhost:34115",
+  "appargs": "",
+  "nsisType": ""
+}

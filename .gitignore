@@ -1,0 +1,7 @@
+.vscode
+/build
+node_modules
+/frontend/dist
+/frontend/wailsjs
+/frontend/.gitingore
+/frontend/package-lock.json
