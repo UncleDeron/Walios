@@ -1,40 +1,90 @@
 <template>
-  <!-- Page -->
-  <!-- 页面 -->
-  <div class="view">
-    <router-view />
+  <div id="walios-app">
+    <!-- 系统通知栏 -->
+    <Notification v-bind="notify"></Notification>
+    <!-- 页面 -->
+    <div class="view" :class="{'with-notify': notify.active}">
+      <router-view v-slot="{ Component, route }">
+        <transition :name="route.meta.transition || 'fade'">
+          <component :is="Component" />
+        </transition>
+      </router-view>
+    </div>
   </div>
 </template>
 
 <script>
-
+import  Notification from "@/components/Notification.vue";
 export default {
-  setup() {
-
-
-    const onclickMinimise = () => {
-      window.runtime.WindowMinimise();
-    };
-    const onclickQuit = () => {
-      window.runtime.Quit();
-    };
-
+  provide() {
     return {
-      onclickMinimise,
-      onclickQuit,
+      app: this,
     };
   },
+  components: {
+    Notification,
+  },
+  data() {
+    return {
+      notify: {
+        active: false,
+        msg: "服务器连接成功~",
+        type: "info",
+      },
+      notifyTimer: null,
+    }
+  },
+  methods: {
+    /**
+     * 系统提示
+     * @param {String} msg 提示内容
+     * @param {String} type 提示类型 success/info/warning/danger
+     * @param {Boolean} autoClose 是否自动关闭 默认 true
+     * @param {Number} duration 自动关闭时间 默认 3000
+     */
+    showSystemNotification(msg, type, autoClose = true, duration = 3000) {
+      clearTimeout(this.notifyTimer);
+      this.notify = {
+        active: true,
+        msg,
+        type,
+      }
+      if (autoClose) {
+        this.notifyTimer = setTimeout(() => {
+          this.notify.active = false;
+        }, duration);
+      }
+    },
+    addWailsEventListener() {
+      runtime.EventsOn("notify", data => {
+        let {msg, type, autoClose, duration} = data
+        this.showSystemNotification(msg, type, autoClose, duration);
+      });
+
+      runtime.EventsOn("closeNotify", data => {
+        console.log(data);
+        let {msg, type, autoClose, duration} = data
+        this.showSystemNotification(msg, type, autoClose, duration);
+      });
+    }
+  },
+  mounted() {
+    this.addWailsEventListener();
+  },
+  components: { Notification }
 };
 </script>
 
 <style lang="scss">
 @import url("./assets/css/reset.css");
 @import url("./assets/css/font.css");
+@import url("./assets/css/common.css");
 
 html {
   width: 100%;
   height: 100%;
 }
+
 body {
   width: 100%;
   height: 100%;
@@ -52,106 +102,17 @@ body {
   background-color: #fafafa;
   overflow: hidden;
 }
-.header {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
-  justify-content: space-between;
-  height: 50px;
-  padding: 0 10px;
-  background-color: rgba(171, 126, 220, 0.9);
-  .nav {
-    a {
-      display: inline-block;
-      min-width: 50px;
-      height: 30px;
-      line-height: 30px;
-      padding: 0 5px;
-      margin-right: 8px;
-      background-color: #ab7edc;
-      border-radius: 2px;
-      text-align: center;
-      text-decoration: none;
-      color: #000000;
-      font-size: 14px;
-      white-space: nowrap;
-      &:hover,
-      &.router-link-exact-active {
-        background-color: #d7a8d8;
-        color: #ffffff;
-      }
-    }
-  }
-  .menu {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: space-between;
-    .language {
-      margin-right: 20px;
-      border-radius: 2px;
-      background-color: #c3c3c3;
-      overflow: hidden;
-      .lang-item {
-        display: inline-block;
-        min-width: 50px;
-        height: 30px;
-        line-height: 30px;
-        padding: 0 5px;
-        background-color: transparent;
-        text-align: center;
-        text-decoration: none;
-        color: #000000;
-        font-size: 14px;
-        &:hover {
-          background-color: #ff050542;
-          cursor: pointer;
-        }
-        &.active {
-          background-color: #ff050542;
-          color: #ffffff;
-          cursor: not-allowed;
-        }
-      }
-    }
-    .bar {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      align-items: center;
-      justify-content: flex-end;
-      min-width: 150px;
-      .bar-btn {
-        display: inline-block;
-        min-width: 80px;
-        height: 30px;
-        line-height: 30px;
-        padding: 0 5px;
-        margin-left: 8px;
-        background-color: #ab7edc;
-        border-radius: 2px;
-        text-align: center;
-        text-decoration: none;
-        color: #000000;
-        font-size: 14px;
-        &:hover {
-          background-color: #d7a8d8;
-          color: #ffffff;
-          cursor: pointer;
-        }
-      }
-    }
-  }
-}
 
 .view {
   position: absolute;
-  top: 50px;
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  &.with-notify {
+    top: 24px;
+  }
 }
 </style>

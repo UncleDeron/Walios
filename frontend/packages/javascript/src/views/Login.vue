@@ -16,7 +16,7 @@
     </el-form>
     <div class="button-list">
       <el-button type="primary" @click="login">登录</el-button>
-      <el-button type="plain">注册</el-button>
+      <el-button type="plain" @click="toRegister">注册</el-button>
     </div>
     
   </div>
@@ -30,6 +30,7 @@ export default {
   components: {
     HelloWorld,
   },
+  inject: ["app"],
   data() {
     return {
       form: {
@@ -41,22 +42,29 @@ export default {
   methods: {
     login() {
       if (!this.form.username) {
-        this.$message.error("请输入账号");
+        this.app.showSystemNotification("请输入账号", "danger");
         return;
       }
       if (!this.form.password) {
-        this.$message.error("请输入密码");
+        this.app.showSystemNotification("请输入密码", "danger");
         return;
       }
       go.main.App.Login(this.form.username, this.form.password).then((result) => {
         console.log(result)
       });
+      // runtime.EventsEmit("login", this.form);
+
+    },
+    toRegister() {
+      this.$router.push("/register");
     }
   }
 };
 </script>
 <style lang="scss">
 .login {
+  height: 100%;
+  padding-top: 60px;
   .logo {
     display: block;
     font-size: 64px;

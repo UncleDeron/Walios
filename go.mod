@@ -1,8 +1,13 @@
-module wails-vue
+module walios
 
 go 1.17
 
-require github.com/wailsapp/wails/v2 v2.0.0-beta.33
+require (
+	github.com/aceld/zinx v1.0.1
+	github.com/garyburd/redigo v1.6.3
+	github.com/wailsapp/wails/v2 v2.0.0-beta.33
+	google.golang.org/protobuf v1.28.0
+)
 
 require (
 	github.com/andybalholm/brotli v1.0.2 // indirect

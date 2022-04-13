@@ -1,0 +1,29 @@
+.warning-color {
+    color: #ffc107;
+}
+.warning-background {
+    background-color: #ffc107;
+}
+
+.success-color {
+    color: #28a745;
+}
+.success-background {
+    background-color: #28a745;
+}
+
+.danger-color {
+    color: #dc3545;
+}
+
+.danger-background {
+    background-color: #dc3545;
+}
+
+.info-color {
+    color: #007bff;
+}
+
+.info-background {
+    background-color: #007bff;
+}

@@ -1,0 +1,21 @@
+// 客户端消息
+syntax = "proto3"; // 指定protobuf协议版本信息
+option go_package = "./;pb"; // 指定go文件包名
+
+message ClientMsg {
+    ClientActionType action = 1; // 动作类型
+    oneof Data {
+        LoginMsgData login_msg_data = 2; // 登录消息
+        string logout_user_id = 3; // 登出用户id
+    }
+}
+
+message LoginMsgData {
+    string username = 1;
+    string password = 2;
+}
+
+enum ClientActionType {
+    LOGIN = 0;
+    LOGOUT = 1;
+}

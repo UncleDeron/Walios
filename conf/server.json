@@ -1,0 +1,14 @@
+{
+    "Host": "127.0.0.1",
+    "Port": 23746,
+    "MaxContentLength": 4096,
+    "Redis": {
+        "Host": "0.0.0.0",
+        "Port": 6379,
+        "Password": "",
+        "DB": 0,
+        "MaxIdle": 16,
+        "MaxActive": 0,
+        "IdleTimeout": 300
+    }
+}
