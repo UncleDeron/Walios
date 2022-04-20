@@ -7,6 +7,11 @@ type NotifyData struct {
 	Duration  int    `json:"duration"`
 }
 
-type CloseNotifyData struct {
-	NotifyData
+func NewAutoCloseNotify(msg, notifyType string) *NotifyData {
+	return &NotifyData{
+		Msg:       msg,
+		Type:      notifyType,
+		AutoClose: true,
+		Duration:  3000,
+	}
 }

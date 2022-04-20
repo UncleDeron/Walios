@@ -61,7 +61,7 @@ func (c *Client) Read() {
 				return
 			}
 			if handler, ok := c.Processor.Handlers[msg.ID]; ok {
-				handler(msg)
+				handler(msg.Data)
 			} else {
 				fmt.Println("msg id not found:", msg.ID)
 			}
@@ -90,7 +90,9 @@ func (c *Client) Stop() {
 
 // NewClient 创建一个客户端实例
 func NewClient(ctx *context.Context) (client *Client, err error) {
-	processor := process.NewProcessor()
+	// 创建消息处理器并绑定处理事件
+	processor := process.NewProcessor(ctx)
+	processor.BindHandler()
 	// 读取配置文件
 	config := utils.ServerConfig{}
 	err = utils.LoadConfig("./conf/server.json", &config)
@@ -141,13 +143,11 @@ func (c *Client) ReConnect() (err error) {
 			continue
 		}
 		c.RetryCount = 0
-		runtime.EventsEmit(c.ctx, "closeNotify", &events.CloseNotifyData{
-			NotifyData: events.NotifyData{
-				Msg:       "连接成功",
-				Type:      "info",
-				AutoClose: true,
-				Duration:  500,
-			},
+		runtime.EventsEmit(c.ctx, "closeNotify", &events.NotifyData{
+			Msg:       "连接成功",
+			Type:      "info",
+			AutoClose: true,
+			Duration:  500,
 		})
 		fmt.Println("reconnect success")
 		break

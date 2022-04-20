@@ -9,6 +9,7 @@ import (
 	"walios/events"
 	"walios/handler"
 	"walios/pb"
+	"walios/protocol"
 
 	"google.golang.org/protobuf/proto"
 )
@@ -58,13 +59,11 @@ func (a *App) domReady(ctx context.Context) {
 			runtime.Quit(a.ctx)
 		}
 	}
-	runtime.EventsEmit(a.ctx, "closeNotify", &events.CloseNotifyData{
-		NotifyData: events.NotifyData{
-			Msg:       "连接成功",
-			Type:      "info",
-			AutoClose: true,
-			Duration:  500,
-		},
+	runtime.EventsEmit(a.ctx, "closeNotify", &events.NotifyData{
+		Msg:       "连接成功",
+		Type:      "info",
+		AutoClose: true,
+		Duration:  500,
 	})
 	go client.Read()
 	a.client = client
@@ -98,8 +97,8 @@ func (a *App) Login(username string, password string) error {
 		Action: pb.ClientActionType_LOGIN,
 		Data: &pb.ClientMsg_LoginMsgData{
 			LoginMsgData: &pb.LoginMsgData{
-				Username: username,
-				Password: password,
+				UserAccount: username,
+				UserPwd:     password,
 			},
 		},
 	}
@@ -116,6 +115,27 @@ func (a *App) Login(username string, password string) error {
 }
 
 // 注册
-func (a *App) Register(username string, password string) {
-	fmt.Println("Register:", username, password)
+func (a *App) Register(regData protocol.RegisterData) error {
+	fmt.Println("Register: ", regData)
+	registerData := &pb.ClientMsg{
+		Action: pb.ClientActionType_REGISTER,
+		Data: &pb.ClientMsg_RegisterMsgData{
+			RegisterMsgData: &pb.RegisterMsgData{
+				UserAccount: regData.UserAccount,
+				UserPwd:     regData.UserPwd,
+				NickName:    regData.NickName,
+				Email:       regData.Email,
+			},
+		},
+	}
+	msgData, err := proto.Marshal(registerData)
+	if err != nil {
+		fmt.Println("Marshal error:", err)
+		return err
+	}
+	if err = a.client.SendMsg(0, msgData); err != nil {
+		fmt.Println("SendMsg error:", err)
+		return err
+	}
+	return nil
 }

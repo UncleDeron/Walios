@@ -5,3 +5,4 @@ node_modules
 /frontend/wailsjs
 /frontend/.gitingore
 /frontend/package-lock.json
+*.pb.go

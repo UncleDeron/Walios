@@ -77,8 +77,15 @@ export default {
     register() {
       this.$refs.form.validate((valid, errors) => {
         if (valid) {
-          go.main.App.Register(this.form.username, this.form.password).then((result) => {
-            console.log(result)
+          go.main.App.Register({
+            userAccount: this.form.userAccount,
+            nickName: this.form.nickName,
+            email: this.form.email,
+            userPwd: this.form.password,
+          }).then((err) => {
+            if (err) {
+              this.app.showSystemNotification(err, "danger")
+            }
           });
         } else {
           console.log("error submit!!");

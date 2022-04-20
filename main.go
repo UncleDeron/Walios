@@ -75,7 +75,7 @@ func main() {
 			WindowIsTranslucent:  true,
 			About: &mac.AboutInfo{
 				Title:   "蛙聊",
-				Message: "蛙聊 © 2020 Walios",
+				Message: "蛙聊 © 2022 Walios",
 				Icon:    icon,
 			},
 		},

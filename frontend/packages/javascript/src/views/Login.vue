@@ -11,7 +11,7 @@
         <el-input v-model="form.username" placeholder="账号"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-input type="password" v-model="form.password" placeholder="密码"></el-input>
+        <el-input type="password" v-model="form.password" placeholder="密码" @keyup.native.enter="login"></el-input>
       </el-form-item>
     </el-form>
     <div class="button-list">
