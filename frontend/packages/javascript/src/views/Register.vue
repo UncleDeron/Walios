@@ -24,7 +24,7 @@
     </el-form>
     <div class="button-list">
       <el-button type="primary" @click="register">注册</el-button>
-      <el-button type="text">取消</el-button>
+      <el-button type="text" @click="backToLogin">取消</el-button>
     </div>
     
   </div>
@@ -105,7 +105,10 @@ export default {
       if (!valid) {
         this.app.showSystemNotification(msg, "danger");
       }
-    }
+    },
+    backToLogin() {
+      this.$router.push("/login");
+    },
   },
   watch: {
     

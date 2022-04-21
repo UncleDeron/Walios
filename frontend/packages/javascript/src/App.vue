@@ -69,7 +69,9 @@ export default {
     }
   },
   mounted() {
-    this.addWailsEventListener();
+    if (window.runtime) {
+      this.addWailsEventListener();
+    }
   },
   components: { Notification }
 };
