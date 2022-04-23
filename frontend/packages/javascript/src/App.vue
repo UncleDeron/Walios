@@ -1,6 +1,6 @@
 <template>
-  <div id="walios-app">
-    <div id="title-bar" data-wails-drag>Walios</div>
+  <div id="walios-app" :class="platform">
+    <div id="title-bar" v-if="platform === 'mac'" data-wails-drag>Walios</div>
     <!-- 系统通知栏 -->
     <Notification v-bind="notify"></Notification>
     <!-- 页面 -->
@@ -17,6 +17,12 @@
 <script>
 import  Notification from "@/components/Notification.vue";
 export default {
+  setup() {
+    const platform = window.navigator.platform.startsWith('Win') ? 'windows' : 'mac';
+    return {
+      platform
+    }
+  },
   provide() {
     return {
       app: this,
@@ -98,6 +104,7 @@ body {
 }
 
 #app {
+  user-select: none;
   position: relative;
   // width: 900px;
   // height: 520px;
@@ -131,6 +138,13 @@ body {
   transition: all 0.3s ease-in-out;
   &.with-notify {
     top: 56px;
+  }
+}
+
+.windows .view {
+  top: 0;
+  &.with-notify {
+    top: 28px;
   }
 }
 </style>

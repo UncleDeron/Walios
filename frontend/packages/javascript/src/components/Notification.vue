@@ -36,4 +36,12 @@ export default {
     transform: translate(0, 100%);
   }
 }
+
+.windows .notification-bar {
+  transform: translate(0, -100%);
+
+  &.is-active {
+    transform: translate(0, 0);
+  }
+}
 </style>

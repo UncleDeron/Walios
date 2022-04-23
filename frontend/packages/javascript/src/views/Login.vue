@@ -65,6 +65,7 @@ export default {
 .login {
   height: 100%;
   padding-top: 60px;
+  
   .logo {
     display: block;
     font-size: 64px;

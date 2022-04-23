@@ -1,6 +1,24 @@
 <template>
     <div class="main-page">
-        <div class="side-panel"></div>
+        <div class="side-panel">
+            <el-scrollbar height="calc(100% - 48px)">
+                
+                
+            </el-scrollbar>
+            <div class="tabs">
+                    <el-row>
+                        <el-col :span="8">
+                            <el-icon><user-filled /></el-icon>
+                        </el-col>
+                        <el-col :span="8">
+                            <el-icon><promotion /></el-icon>
+                        </el-col>
+                        <el-col :span="8">
+                            <el-icon><tools /></el-icon>
+                        </el-col>
+                    </el-row>
+                </div>
+        </div>
         <div class="main-panel"></div>
     </div>
 </template>
@@ -35,6 +53,25 @@ export default {
     .side-panel {
         width: 300px;
         background-color: #D4D2C1;
+        position: relative;
+
+        .tabs {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 48px;
+            border-top: 1px solid #ddd;
+
+            .el-col {
+                height: 48px;
+                line-height: 48px;
+                text-align: center;
+                font-size: 24px;
+                color: #898777;
+                cursor: pointer;
+            }
+        }
     }
 
     .main-panel {
