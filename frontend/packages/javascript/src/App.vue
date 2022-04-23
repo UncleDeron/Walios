@@ -1,5 +1,6 @@
 <template>
   <div id="walios-app">
+    <div id="title-bar" data-wails-drag>Walios</div>
     <!-- 系统通知栏 -->
     <Notification v-bind="notify"></Notification>
     <!-- 页面 -->
@@ -101,20 +102,35 @@ body {
   // width: 900px;
   // height: 520px;
   height: 100%;
-  background-color: #fafafa;
+  background-color: #DFDBCB;
   overflow: hidden;
+}
+
+#title-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 28px;
+  line-height: 28px;
+  background-color: #C7C5B6;
+  z-index: 1;
+  text-align: center;
+  font-family: "PingFangSC-Medium";
+  color: #333;
+  font-size: 14px;
 }
 
 .view {
   position: absolute;
-  top: 0;
+  top: 28px;
   left: 0;
   right: 0;
   bottom: 0;
   overflow: hidden;
   transition: all 0.3s ease-in-out;
   &.with-notify {
-    top: 24px;
+    top: 56px;
   }
 }
 </style>

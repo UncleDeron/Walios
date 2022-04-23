@@ -24,16 +24,16 @@ export default {
 <style lang="scss">
 .notification-bar {
   width: 100%;
-  height: 24px;
-  line-height: 24px;
+  height: 28px;
+  line-height: 28px;
   font-size: 14px;
   color: #fff;
   text-align: center;
-  transform: translate(0, -100%);
+  transform: translate(0, 0);
   transition: all 0.3s ease-in-out;
 
   &.is-active {
-    transform: translate(0, 0);
+    transform: translate(0, 100%);
   }
 }
 </style>

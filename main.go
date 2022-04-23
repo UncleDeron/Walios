@@ -71,8 +71,8 @@ func main() {
 				HideToolbarSeparator:       false,
 			},
 			Appearance:           mac.NSAppearanceNameDarkAqua,
-			WebviewIsTransparent: true,
-			WindowIsTranslucent:  true,
+			WebviewIsTransparent: false,
+			WindowIsTranslucent:  false,
 			About: &mac.AboutInfo{
 				Title:   "蛙聊",
 				Message: "蛙聊 © 2022 Walios",
