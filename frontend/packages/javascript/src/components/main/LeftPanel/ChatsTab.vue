@@ -12,19 +12,19 @@
         </header>
         <div class="chat-list">
             <el-scrollbar height="100%">
-                <user-item v-for="item in 40" :key="item" :item="{ name: item, latestLogin: '2022-04-24' }"
-                    class="scrollbar-demo-item">{{ item }}</user-item>
+                <chat-item v-for="item in 40" :key="item" :item="{ name: item, latestLogin: '2022-04-24' }"
+                    class="scrollbar-demo-item">{{ item }}</chat-item>
             </el-scrollbar>
         </div>
     </div>
 </template>
 
 <script>
-import UserItem from './UserItem.vue'
+import ChatItem from './ChatItem.vue'
 export default {
     name: 'chats-tab',
     components: {
-        UserItem,
+        ChatItem,
     },
     data() {
         return {

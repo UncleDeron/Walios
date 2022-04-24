@@ -6,17 +6,17 @@
         <div class="tabs">
             <el-row>
                 <el-col :span="8" @click="switchTab('contacts')">
-                    <el-icon class="active">
+                    <el-icon :class="activeTab === 'contacts' ? 'active' : ''">
                         <user-filled />
                     </el-icon>
                 </el-col>
                 <el-col :span="8" @click="switchTab('chats')">
-                    <el-icon>
+                    <el-icon :class="activeTab === 'chats' ? 'active' : ''">
                         <promotion />
                     </el-icon>
                 </el-col>
                 <el-col :span="8" @click="switchTab('settings')">
-                    <el-icon>
+                    <el-icon :class="activeTab === 'settings' ? 'active' : ''">
                         <tools />
                     </el-icon>
                 </el-col>
@@ -27,19 +27,29 @@
 
 <script>
 import ContactsTab from './ContactsTab.vue';
+import ChatsTab from './ChatsTab.vue';
 
 export default {
     name: "leftPanel",
     components: {
-        ContactsTab
+        ContactsTab,
+        ChatsTab
+    },
+    props: {
+        activeTab: {
+            type: String,
+            default: 'chats'
+        }
     },
     data() {
         return {
-            activeTab: 'contacts',
+            // activeTab: 'contacts',
         };
     },
-    setup() {
-
+    setup(props) {
+        // return {
+        //     activeTabComponent: props.activeTab + '-tab'
+        // }
     },
     methods: {
         switchTab(tab) {

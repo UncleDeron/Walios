@@ -1,7 +1,7 @@
 <template>
     <div class="main-page">
         <div class="side-panel">
-            <left-panel></left-panel>
+            <left-panel :activeTab="currentTab" @switchTab="switchTab"></left-panel>
         </div>
         <div class="main-panel"></div>
     </div>
@@ -17,11 +17,13 @@ export default {
     inject: ["app"],
     data() {
         return {
-
+            currentTab: 'chats'
         };
     },
     methods: {
-
+        switchTab(tab) {
+            this.currentTab = tab;
+        }
     }
 };
 </script>
