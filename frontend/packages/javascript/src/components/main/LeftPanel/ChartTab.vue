@@ -1,5 +1,5 @@
 <template>
-    <div class="contacts-tab">
+    <div class="chats-tab">
         <header>
             <div class="search-wrap">
                 <el-input
@@ -10,14 +10,8 @@
                 <chat-line-round />
             </el-icon>
         </header>
-        <div class="user-list">
+        <div class="chat-list">
             <el-scrollbar height="100%">
-                <div class="add-contact">
-                    <el-icon>
-                        <User></User>
-                    </el-icon>
-                    <span>添加联系人</span>
-                </div>
                 <user-item v-for="item in 40" :key="item" :item="{ name: item, latestLogin: '2022-04-24' }"
                     class="scrollbar-demo-item">{{ item }}</user-item>
             </el-scrollbar>
@@ -28,7 +22,7 @@
 <script>
 import UserItem from './UserItem.vue'
 export default {
-    name: 'contacts-tab',
+    name: 'chats-tab',
     components: {
         UserItem,
     },
@@ -42,7 +36,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.contacts-tab {
+.chats-tab {
     height: 100%;
     position: relative;
 
@@ -71,39 +65,9 @@ export default {
         }
     }
 
-    .user-list {
+    .chat-list {
         height: calc(100% - 48px);
 
-        .add-contact {
-            height: 48px;
-            line-height: 48px;
-            font-size: 15px;
-            color: #38697e;
-            cursor: pointer;
-            padding-left: 8px;
-            border-bottom: 1px solid #ddd;
-
-            .el-icon {
-                width: 48px;
-                float: left;
-                margin-right: 8px;
-                height: 48px;
-                line-height: 48px;
-                font-size: 24px;
-
-                &::before {
-                    content: "+";
-                    position: absolute;
-                    width: 9px;
-                    height: 18px;
-                    line-height: 12px;
-                    left: 8px;
-                    bottom: 5px;
-                    font-size: 18px;
-                    background: #D4D2C1;
-                }
-            }
-        }
     }
 }
 

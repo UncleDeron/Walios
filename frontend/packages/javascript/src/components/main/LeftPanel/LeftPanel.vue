@@ -10,7 +10,7 @@
                         <user-filled />
                     </el-icon>
                 </el-col>
-                <el-col :span="8" @click="switchTab('charts')">
+                <el-col :span="8" @click="switchTab('chats')">
                     <el-icon>
                         <promotion />
                     </el-icon>
