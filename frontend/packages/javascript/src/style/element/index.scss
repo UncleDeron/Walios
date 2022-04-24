@@ -1,0 +1,15 @@
+@forward 'element-plus/theme-chalk/src/common/var.scss' with (
+    $colors: (
+        'primary': (
+            'base': #38697e,
+        ),
+    ),
+    $input: (
+        'border-radius': 6px,
+    ),
+    $button-border-radius: (
+        'default': 6px,
+    ),
+);
+
+@use "element-plus/theme-chalk/src/index.scss" as *;

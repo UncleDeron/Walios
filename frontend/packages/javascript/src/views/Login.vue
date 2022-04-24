@@ -16,7 +16,7 @@
     </el-form>
     <div class="button-list">
       <el-button type="primary" @click="login">登录</el-button>
-      <el-button type="plain" @click="toRegister">注册</el-button>
+      <el-button type="primary" plain @click="toRegister">注册</el-button>
     </div>
     
   </div>
