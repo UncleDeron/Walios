@@ -30,7 +30,7 @@ import ContactsTab from './ContactsTab.vue';
 import ChatsTab from './ChatsTab.vue';
 
 export default {
-    name: "leftPanel",
+    name: "left-panel",
     components: {
         ContactsTab,
         ChatsTab

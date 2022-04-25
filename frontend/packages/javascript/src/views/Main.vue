@@ -3,16 +3,20 @@
         <div class="side-panel">
             <left-panel :activeTab="currentTab" @switchTab="switchTab"></left-panel>
         </div>
-        <div class="main-panel"></div>
+        <div class="main-panel">
+            <main-panel></main-panel>
+        </div>
     </div>
 </template>
 
 <script>
 import LeftPanel from "../components/main/LeftPanel/LeftPanel.vue";
+import MainPanel from "../components/main/MainPanel/MainPanel.vue";
 export default {
     name: "Main",
     components: {
-        LeftPanel
+        LeftPanel,
+        MainPanel
     },
     inject: ["app"],
     data() {
@@ -38,6 +42,7 @@ export default {
 
     .side-panel {
         width: 300px;
+        border-right: 1px solid #ddd;
     }
 
     .main-panel {

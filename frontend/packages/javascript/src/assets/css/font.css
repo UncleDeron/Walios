@@ -2,3 +2,8 @@
   font-family: "JetBrainsMono";
   src: url("../fonts/JetBrainsMono-Medium.woff2");
 }
+
+@font-face {
+  font-family: "Alibaba";
+  src: url("../fonts/AlibabaPuHui-Regular.otf");
+}
